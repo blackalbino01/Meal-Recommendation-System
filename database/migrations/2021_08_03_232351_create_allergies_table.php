@@ -13,11 +13,13 @@ class CreateAllergiesTable extends Migration
      */
     public function up()
     {
-        Schema::create('allergies', function (Blueprint $table) {
-            $table->id();
-            $table->string('allergy_type');
-            $table->timestamps();
-        });
+        if(!Schema::hasTable('allergies')){ 
+            Schema::create('allergies', function (Blueprint $table) {
+                $table->id();
+                $table->string('allergy_type');
+                $table->timestamps();
+            });
+        }
     }
 
     /**

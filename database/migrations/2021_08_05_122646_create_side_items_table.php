@@ -13,12 +13,14 @@ class CreateSideItemsTable extends Migration
      */
     public function up()
     {
-        Schema::create('side_items', function (Blueprint $table) {
-            $table->id();
-            $table->string('side_item');
-            $table->foreignId('meal_id')->constrained();
-            $table->timestamps();
-        });
+        if(!Schema::hasTable('side_items')){ 
+            Schema::create('side_items', function (Blueprint $table) {
+                $table->id();
+                $table->string('side_item');
+                $table->foreignId('meal_id')->constrained();
+                $table->timestamps();
+            });
+        }
     }
 
     /**

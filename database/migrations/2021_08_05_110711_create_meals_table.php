@@ -13,12 +13,14 @@ class CreateMealsTable extends Migration
      */
     public function up()
     {
-        Schema::create('meals', function (Blueprint $table) {
-            $table->id();
-            $table->string('main_item');
-            $table->foreignId('allergy_id')->constrained();
-            $table->timestamps();
-        });
+        if(!Schema::hasTable('meals')){ 
+            Schema::create('meals', function (Blueprint $table) {
+                $table->id();
+                $table->string('main_item');
+                $table->foreignId('allergy_id')->constrained();
+                $table->timestamps();
+            });
+        }
     }
 
     /**
